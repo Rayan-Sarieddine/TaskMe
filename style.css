@@ -1,0 +1,17 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.page {
+  overflow-x: hidden;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  width: 100vw;
+  font-family: "Oswald", sans-serif;
+}
