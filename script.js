@@ -12,10 +12,19 @@ const btn4 = document.querySelectorAll(".header-card_btn")[3];
 btn1.addEventListener("click", function () {
   if (card2.classList.contains("no-display")) {
     card2.classList.remove("no-display");
+  } else if (card3.classList.contains("no-display")) {
+    btn2.classList.add("header-warning");
+    setTimeout(function () {
+      btn2.classList.remove("header-warning");
+    }, 200);
+  } else if (card4.classList.contains("no-display")) {
+    btn3.classList.add("header-warning");
+    setTimeout(function () {
+      btn3.classList.remove("header-warning");
+    }, 200);
   } else {
     btn4.classList.add("header-warning");
     setTimeout(function () {
-      //settimeout function source: https://www.playerzero.ai/lib/how-to-set-time-delay-in-javascript
       btn4.classList.remove("header-warning");
     }, 200);
   }
@@ -23,6 +32,11 @@ btn1.addEventListener("click", function () {
 btn2.addEventListener("click", function () {
   if (card3.classList.contains("no-display")) {
     card3.classList.remove("no-display");
+  } else if (card4.classList.contains("no-display")) {
+    btn3.classList.add("header-warning");
+    setTimeout(function () {
+      btn3.classList.remove("header-warning");
+    }, 200);
   } else {
     btn4.classList.add("header-warning");
     setTimeout(function () {
