@@ -15,7 +15,9 @@ html {
 body {
   width: 100vw;
   font-family: "Oswald", sans-serif;
+  background-color: #c8dee0;
 }
+
 /*header section*/
 header {
   width: 100%;
@@ -66,7 +68,25 @@ nav {
   font-size: 4rem;
   color: #5e17eb;
   text-transform: uppercase;
+  animation: slide 2s linear;
   font-weight: 500;
+}
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  20% {
+    transform: translateX(80%);
+  }
+  40% {
+    transform: translateX(50%);
+  }
+  90% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 .header-cards {
   display: flex;
@@ -80,6 +100,17 @@ nav {
   padding-bottom: 1rem;
   border-radius: 8px;
   transition: 0.5s;
+  animation: down 0.5s ease-in-out forwards;
+}
+@keyframes down {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 .header-card:hover {
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
@@ -130,7 +161,7 @@ nav {
   font-weight: 500;
   text-transform: uppercase;
 }
-.header-card_btn {
+.btn {
   padding: 1rem 2rem;
   background-color: #fff;
   border-radius: 10rem;
@@ -141,7 +172,7 @@ nav {
   text-transform: uppercase;
   font-weight: 600;
 }
-.header-card_btn:hover {
+.btn:hover {
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
 }
 .no-display {
@@ -150,4 +181,130 @@ nav {
 .header-warning {
   background-color: #5e17eb;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+/*main section*/
+main {
+  width: 100%;
+  background-image: url(Assets/body-background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  height: 100vh;
+  padding-top: 25rem;
+}
+.main-container_input {
+  width: 60%;
+  margin: 0 auto;
+  background: linear-gradient(#5e17eb, #7c58c2);
+  padding: 2rem;
+}
+.main-container_display {
+  width: 60%;
+  margin: 0 auto;
+  background: linear-gradient(#5e17eb, #7c58c2);
+  border-radius: 20px;
+  padding: 2rem;
+}
+.main-container_display {
+  margin-top: 2rem;
+}
+.t-input,
+.t-input2 {
+  font-size: 1.5rem;
+  color: #5e17eb;
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  background-color: rgba(#fff, 0.5);
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(#000, 0.1);
+  border-bottom: 3px solid #5e17eb;
+
+  display: block;
+  transition: all 0.3s;
+}
+.t-input-red::placeholder {
+  color: red;
+}
+.calender-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-left: 5rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  display: inline-block;
+}
+.button-add,
+.button-clear,
+.button-update {
+  margin-left: 2rem;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.display-btn_edit {
+  padding: 1rem;
+  cursor: pointer;
+  background-color: rgb(70, 232, 70);
+  border: none;
+}
+.display-btn_delete {
+  padding: 1rem;
+  cursor: pointer;
+  background-color: rgb(241, 51, 63);
+  border: none;
+}
+.display-icon {
+  font-size: 2.5rem;
+}
+
+.display-table {
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
+}
+.due,
+.due2 {
+  padding: 10px;
+  font-size: 14px;
+  border: 3px solid #5e17eb;
+  border-radius: 20px;
+  color: #28262c;
+  cursor: pointer;
+}
+.inputs {
+  display: flex;
+}
+.no {
+  display: none;
+}
+.line-through {
+  text-decoration: line-through;
+}
+.popup {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+.content {
+  width: 75%;
+  background: linear-gradient(#5e17eb, #7c58c2);
+  border-radius: 20px;
+  display: table;
+  transform: translate(20%, 220%) scale(1.1);
+  transition: all 0.5s 0.2s;
+}
+.green {
+  background-color: rgba(47, 147, 100, 0.84);
+}
+.dropdown-text {
+  font-size: 2rem;
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
 }

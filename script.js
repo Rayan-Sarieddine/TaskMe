@@ -1,13 +1,14 @@
 "use strict";
+//header functionality to display the cards droppng down
 const card1 = document.querySelector(".header-card1");
 const card2 = document.querySelector(".header-card2");
 const card3 = document.querySelector(".header-card3");
 const card4 = document.querySelector(".header-card4");
 
-const btn1 = document.querySelectorAll(".header-card_btn")[0];
-const btn2 = document.querySelectorAll(".header-card_btn")[1];
-const btn3 = document.querySelectorAll(".header-card_btn")[2];
-const btn4 = document.querySelectorAll(".header-card_btn")[3];
+const btn1 = document.querySelectorAll(".btn")[0];
+const btn2 = document.querySelectorAll(".btn")[1];
+const btn3 = document.querySelectorAll(".btn")[2];
+const btn4 = document.querySelectorAll(".btn")[3];
 
 btn1.addEventListener("click", function () {
   if (card2.classList.contains("no-display")) {
@@ -54,3 +55,190 @@ btn3.addEventListener("click", function () {
     }, 200);
   }
 });
+//end heaer functionality
+
+//adding a new task function
+function add() {
+  if (input.value.trim() === "") {
+    input.placeholder = "Please Enter Task:";
+    input.classList.add("t-input-red");
+  } else {
+    //reset placeholder
+    if (input.classList.contains("t-input-red")) {
+      input.classList.remove("t-input-red");
+    }
+    const stamp = new Date();
+    const date = stamp.toDateString();
+    const time = stamp.toLocaleTimeString();
+    const datetemp = new Date(dueDate.value).toDateString();
+    const timetemp = new Date(dueDate.value).toLocaleTimeString();
+    table.innerHTML += `<tr class="data-row ${id}" draggable='true' ondragstart='start()' ondragover='dragover()'>
+    <td class="display-hidden">
+
+      <button class="display-btn_edit"><ion-icon class="display-icon" name="pencil-outline"></ion-icon></button>
+      <button class="display-btn_delete"><ion-icon class="display-icon" name="trash-outline"></ion-icon></button>
+    </td>
+    <td class="display-task_priority ${id}priority"></td>
+<td class="display-task_name ${id}name">${input.value}</td>
+<td class="display-task_date ${id}date">Added on: ${date} at ${time}</td>
+<td class="display-task_due ${id}due">Due on: ${datetemp} at ${timetemp}</td>
+  </tr>`;
+  }
+}
+//end add new task function
+
+let id = 0;
+const submitBtn = document.querySelector(".button-add");
+let editbtns = 0;
+let deleteBtns = 0;
+const input = document.querySelector(".t-input");
+const table = document.querySelector(".display-table");
+const dueDate = document.querySelector(".due");
+submitBtn.addEventListener("click", function () {
+  add(1, false);
+  id++;
+  deleteBtns = document.querySelectorAll(".display-btn_delete");
+  editbtns = document.querySelectorAll(".display-btn_edit");
+
+  for (let i = 0; i < deleteBtns.length; i++) {
+    deleteBtns[i].addEventListener("click", function () {
+      deleteBtns[i].parentElement.parentElement.remove();
+    });
+  }
+  const rowsclclick = document.querySelectorAll(".data-row");
+  for (let i = 0; i < rowsclclick.length; i++) {
+    rowsclclick[i].addEventListener("click", function () {
+      rowsclclick[i].classList.toggle("line-through");
+      rowsclclick[i].classList.toggle("green");
+      rowsclclick[i].classList.add("finished");
+      rowsclclick = document.querySelectorAll(".data-row");
+    });
+  }
+
+  //filters
+  const dropdown = document.querySelector(".dropdown");
+  dropdown.addEventListener("change", function () {
+    //filter all
+    if (dropdown.value == "option1") {
+      table.innerHTML = `<tr>
+         <th></th>
+         <th>Priority</th>
+         <th>Task Name</th>
+         <th>Date added</th>
+         <th>Due date</th>
+       </tr>`;
+      for (let i = 0; i < rowsclclick.length; i++) {
+        table.innerHTML += rowsclclick[i].innerHTML;
+      }
+    }
+
+    //filter finished
+    if (dropdown.value == "option4") {
+      table.innerHTML = `<tr>
+      <th></th>
+      <th>Priority</th>
+      <th>Task Name</th>
+      <th>Date added</th>
+      <th>Due date</th>
+    </tr>`;
+      for (let i = 0; i < rowsclclick.length; i++) {
+        if (rowsclclick[i].classList.contains("finished")) {
+          table.innerHTML += rowsclclick[i].innerHTML;
+        }
+      }
+    }
+    //filter not finished
+    if (dropdown.value == "option5") {
+      table.innerHTML = `<tr>
+      <th></th>
+      <th>Priority</th>
+      <th>Task Name</th>
+      <th>Date added</th>
+      <th>Due date</th>
+    </tr>`;
+      for (let i = 0; i < rowsclclick.length; i++) {
+        if (rowsclclick[i].classList.contains("finished")) {
+          continue;
+        } else {
+          table.innerHTML += rowsclclick[i].innerHTML;
+        }
+      }
+    }
+  });
+
+  for (let i = 0; i < editbtns.length; i++) {
+    editbtns[i].addEventListener("click", function () {
+      document.querySelector(".popup").classList.remove("no-display");
+      document
+        .querySelector(".button-update")
+        .addEventListener("click", function () {
+          const input2 = document.querySelector(".t-input2");
+
+          if (input2.value.trim() === "") {
+            input2.placeholder = "Please Enter Edited Task:";
+            input2.classList.add("t-input-red");
+          } else {
+            //reset placeholder
+            if (input2.classList.contains("t-input-red")) {
+              input2.classList.remove("t-input-red");
+            }
+            const stamp = new Date();
+            const date = stamp.toDateString();
+            const time = stamp.toLocaleTimeString();
+            const duedate2 = document.querySelector(".due2");
+            const datetemp = new Date(duedate2.value).toDateString();
+            const timetemp = new Date(duedate2.value).toLocaleTimeString();
+            const tr = editbtns[i].parentElement.parentElement.classList[0];
+            const row = document.querySelector(`.${tr}`);
+            row.innerHTML = `<tr class="data-row ${tr}" draggable='true' ondragstart='start()' ondragover='dragover()'>
+      <td class="display-hidden">
+  
+        <button class="display-btn_edit"><ion-icon class="display-icon" name="pencil-outline"></ion-icon></button>
+        <button class="display-btn_delete"><ion-icon class="display-icon" name="trash-outline"></ion-icon></button>
+      </td>
+      <td class="display-task_priority ${tr}priority"></td>
+  <td class="display-task_name ${tr}name">${input2.value}</td>
+  <td class="display-task_date ${tr}date">Updated on: ${date} at ${time}</td>
+  <td class="display-task_due ${tr}due">Due on: ${datetemp} at ${timetemp}</td>
+    </tr>`;
+            document.querySelector(".popup").classList.add("no-display");
+          }
+        });
+    });
+  }
+});
+const clearAll = document.querySelector(".button-clear");
+clearAll.addEventListener("click", function () {
+  table.innerHTML = `<tr>
+  <th></th>
+  <th>Priority</th>
+  <th>Task Name</th>
+  <th>Date added</th>
+  <th>Due date</th>
+</tr>`;
+});
+
+var row;
+function start() {
+  row = event.target;
+}
+
+//source:https://www.therogerlab.com/sandbox/pages/how-to-reorder-table-rows-in-javascript?s=0ea4985d74a189e8b7b547976e7192ae.4122809346f6a15e41c9a43f6fcb5fd5
+function dragover() {
+  var e = event;
+  e.preventDefault();
+
+  let children = Array.from(e.target.parentNode.parentNode.children);
+  if (children.indexOf(e.target.parentNode) > children.indexOf(row))
+    e.target.parentNode.after(row);
+  else e.target.parentNode.before(row);
+  //end source:https://www.therogerlab.com/sandbox/pages/how-to-reorder-table-rows-in-javascript?s=0ea4985d74a189e8b7b547976e7192ae.4122809346f6a15e41c9a43f6fcb5fd5
+  priority();
+}
+
+function priority() {
+  let rows = document.querySelectorAll(".display-task_priority");
+  for (let i = 0; i < rows.length; i++) {
+    rows[i].innerHTML = `${i + 1}`;
+  }
+}

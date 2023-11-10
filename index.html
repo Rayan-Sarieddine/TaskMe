@@ -48,7 +48,7 @@
               </div>
 
                 <p class="header-card_text">Think about task</p>
-                <button class="header-card_btn">Next</button>
+                <button class="btn">Next</button>
               </div>
 
             <div class="header-card header-card2 no-display">
@@ -61,7 +61,7 @@
                 <img src="Assets/step2.jpg" class="hearder-image" alt="" />
               </div>
                 <p class="header-card_text">Enter task here</p>
-                <button class="header-card_btn">Next</button>
+                <button class="btn">Next</button>
               </div>
 
             <div class="header-card header-card3 no-display">
@@ -73,7 +73,7 @@
                 <img src="Assets/step3.jpg" class="hearder-image" alt="" />
               </div>
                 <p class="header-card_text">Do task</p>
-                <button class="header-card_btn">Next</button>
+                <button class="btn">Next</button>
               </div>
 
             <div class="header-card header-card4 no-display">
@@ -87,14 +87,59 @@
               </div>
               
                 <p class="header-card_text">Remove and next one!</p>
-                <button class="header-card_btn" href="#">start</button>
+                <!--source: https://stackoverflow.com/questions/15935318/smooth-scroll-to-top-->
+                <button class="btn" onclick='window.scrollTo({top:1000, behavior: "smooth"});'>start</button>
               </div>
             </div>
           </div>
         </div>
       </header>
+
+
+      <!--main section-->
+      <main id="main">
+<div class="main-container_input">
+  <div class="inputs">
+    <input type="text" class="t-input" placeholder="Enter Task" id="task" maxlength="20"required>
+    <label class="calender-title"for="date">Select a due date:</label>
+    <input type="datetime-local" class="due" name="due">
+    <button class=" btn button-add">Add</button>
+    <button class=" btn button-clear">Clear All</button>
+    <label class="dropdown-text">display:</label>
+    <select class="dropdown" name="dropdown">
+      <option value=""></option>
+        <option value="option1">all</option>
+        <option value="option4">finished</option>
+        <option value="option5">not finished tasks</option>
+    </select>
+</div>
+</div>
+<div class="main-container_display">
+ 
+    <table border="1" class="display-table">
+      <tr>
+        <th></th>
+        <th>Priority</th>
+        <th>Task Name</th>
+        <th>Date added</th>
+        <th>Due date</th>
+      </tr>
+      
+    </table>
+</div>
+
+      </main>
     </div>
 
+    <!--pop up-->
+<div class="popup no-display" id="popup">
+  <div class="content">
+  <input type="text" class="t-input2" placeholder="Edit Task" id="task" maxlength="20"required>
+    <label class="calender-title"for="date">Select a due date:</label>
+    <input type="datetime-local" class="due2" name="due">
+    <button class=" btn button-update">Update</button>
+</div>
+</div>
     <script src="script.js"></script>
     <script
       type="module"
