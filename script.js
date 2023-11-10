@@ -66,11 +66,19 @@ function add() {
     if (input.classList.contains("t-input-red")) {
       input.classList.remove("t-input-red");
     }
+
     const stamp = new Date();
     const date = stamp.toDateString();
     const time = stamp.toLocaleTimeString();
-    const datetemp = new Date(dueDate.value).toDateString();
-    const timetemp = new Date(dueDate.value).toLocaleTimeString();
+    let datetemp;
+    let timetemp;
+    if (dueDate.value == "") {
+      datetemp = "OPEN DATE";
+      timetemp = "OPEN TIME";
+    } else {
+      datetemp = new Date(dueDate.value).toDateString();
+      timetemp = new Date(dueDate.value).toLocaleTimeString();
+    }
     table.innerHTML += `<tr class="data-row ${id}" draggable='true' ondragstart='start()' ondragover='dragover()'>
     <td class="display-hidden">
 
@@ -191,8 +199,15 @@ submitBtn.addEventListener("click", function () {
             const date = stamp.toDateString();
             const time = stamp.toLocaleTimeString();
             const duedate2 = document.querySelector(".due2");
-            const datetemp = new Date(duedate2.value).toDateString();
-            const timetemp = new Date(duedate2.value).toLocaleTimeString();
+            let datetemp2;
+            let timetemp2;
+            if (duedate2.value == "") {
+              datetemp2 = "OPEN DATE";
+              timetemp2 = "OPEN TIME";
+            } else {
+              datetemp2 = new Date(dueDate.value).toDateString();
+              timetemp2 = new Date(dueDate.value).toLocaleTimeString();
+            }
             const tr = editbtns[i].parentElement.parentElement.classList[0];
             const row = document.querySelector(`.${tr}`);
             row.innerHTML = `<tr class="data-row ${tr}" draggable='true' ondragstart='start()' ondragover='dragover()'>
@@ -204,9 +219,10 @@ submitBtn.addEventListener("click", function () {
       <td class="display-task_priority ${tr}priority"></td>
   <td class="display-task_name ${tr}name">${input2.value}</td>
   <td class="display-task_date ${tr}date">Updated on: ${date} at ${time}</td>
-  <td class="display-task_due ${tr}due">Due on: ${datetemp} at ${timetemp}</td>
+  <td class="display-task_due ${tr}due">Due on: ${datetemp2} at ${timetemp2}</td>
     </tr>`;
             document.querySelector(".popup").classList.add("no-display");
+            input2.value = "";
           }
         });
     });
