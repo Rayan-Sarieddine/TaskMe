@@ -1,7 +1,4 @@
-/*main: #5E17EB*/
-*,
-*::after,
-*::before {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -211,7 +208,9 @@ main {
 }
 .t-input,
 .t-input2,
-.search {
+.search,
+.due,
+.due2 {
   font-size: 1.5rem;
   color: #5e17eb;
   padding: 1.5rem 2rem;
@@ -219,7 +218,7 @@ main {
   background-color: rgba(#fff, 0.5);
   outline: none;
   box-shadow: 0 1rem 2rem rgba(#000, 0.1);
-  border-bottom: 3px solid #5e17eb;
+  border: 3px solid #eb17cb;
 
   display: block;
   transition: all 0.3s;
@@ -272,7 +271,6 @@ main {
 .due2 {
   padding: 10px;
   font-size: 14px;
-  border: 3px solid #5e17eb;
   border-radius: 20px;
   color: #28262c;
   cursor: pointer;
@@ -347,4 +345,8 @@ main {
   background: none;
   border: none;
   cursor: pointer;
+}
+.dropdown {
+  border-radius: 20px;
+  border: 3px solid #eb17cb;
 }
