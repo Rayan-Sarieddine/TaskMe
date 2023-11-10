@@ -1,6 +1,6 @@
 ## TaskMe
 # This is my TO_DO_LIST web application named TaskMe. It is made with pure HTML, CSS and JS and contains the following functionalities:
--Add tasks
+-Add tasks   
 -Delete tasks individually   
 -Clear all tasks at once   
 -Update (edit) tasks   
