@@ -55,7 +55,6 @@ btn3.addEventListener("click", function () {
     }, 200);
   }
 });
-//end heaer functionality
 
 //adding a new task function
 function add() {
@@ -85,8 +84,8 @@ function add() {
   </tr>`;
   }
 }
-//end add new task function
 
+//add functionality
 let id = 0;
 const submitBtn = document.querySelector(".button-add");
 let editbtns = 0;
@@ -95,17 +94,20 @@ const input = document.querySelector(".t-input");
 const table = document.querySelector(".display-table");
 const dueDate = document.querySelector(".due");
 submitBtn.addEventListener("click", function () {
-  add(1, false);
+  add();
   input.value = "";
   id++;
   deleteBtns = document.querySelectorAll(".display-btn_delete");
   editbtns = document.querySelectorAll(".display-btn_edit");
 
+  //delete functionality
   for (let i = 0; i < deleteBtns.length; i++) {
     deleteBtns[i].addEventListener("click", function () {
       deleteBtns[i].parentElement.parentElement.remove();
     });
   }
+
+  //finished functionality
   let rowsclclick = document.querySelectorAll(".data-row");
   for (let i = 0; i < rowsclclick.length; i++) {
     rowsclclick[i].addEventListener("click", function () {
@@ -116,7 +118,7 @@ submitBtn.addEventListener("click", function () {
     });
   }
 
-  //filters
+  //filter functionality
   const dropdown = document.querySelector(".dropdown");
   dropdown.addEventListener("change", function () {
     //filter all
@@ -133,8 +135,8 @@ submitBtn.addEventListener("click", function () {
       }
     }
 
-    //filter finished
-    if (dropdown.value == "option4") {
+    //filter for finished tasks
+    if (dropdown.value == "option2") {
       table.innerHTML = `<tr>
       <th></th>
       <th>Priority</th>
@@ -148,8 +150,9 @@ submitBtn.addEventListener("click", function () {
         }
       }
     }
-    //filter not finished
-    if (dropdown.value == "option5") {
+
+    //filter for not finished tasks
+    if (dropdown.value == "option3") {
       table.innerHTML = `<tr>
       <th></th>
       <th>Priority</th>
@@ -167,6 +170,7 @@ submitBtn.addEventListener("click", function () {
     }
   });
 
+  //edit functionality
   for (let i = 0; i < editbtns.length; i++) {
     editbtns[i].addEventListener("click", function () {
       document.querySelector(".popup").classList.remove("no-display");
@@ -208,6 +212,8 @@ submitBtn.addEventListener("click", function () {
     });
   }
 });
+
+//clear functionality
 const clearAll = document.querySelector(".button-clear");
 clearAll.addEventListener("click", function () {
   table.innerHTML = `<tr>
@@ -224,26 +230,28 @@ function start() {
   row = event.target;
 }
 
+//drag functionality
 //source:https://www.therogerlab.com/sandbox/pages/how-to-reorder-table-rows-in-javascript?s=0ea4985d74a189e8b7b547976e7192ae.4122809346f6a15e41c9a43f6fcb5fd5
 function dragover() {
-  var e = event;
-  e.preventDefault();
+  event.preventDefault();
 
-  let children = Array.from(e.target.parentNode.parentNode.children);
-  if (children.indexOf(e.target.parentNode) > children.indexOf(row))
-    e.target.parentNode.after(row);
-  else e.target.parentNode.before(row);
+  let children = Array.from(event.target.parentNode.parentNode.children);
+  if (children.indexOf(event.target.parentNode) > children.indexOf(row))
+    event.target.parentNode.after(row);
+  else event.target.parentNode.before(row);
   //end source:https://www.therogerlab.com/sandbox/pages/how-to-reorder-table-rows-in-javascript?s=0ea4985d74a189e8b7b547976e7192ae.4122809346f6a15e41c9a43f6fcb5fd5
   priority();
 }
 
+//priority functionality
 function priority() {
   let rows = document.querySelectorAll(".display-task_priority");
   for (let i = 0; i < rows.length; i++) {
     rows[i].innerHTML = `${i + 1}`;
   }
 }
-//search
+
+//search functionality
 let rowsave;
 const search = document.querySelector(".search");
 const message = document.querySelector(".message");
@@ -287,6 +295,8 @@ searchbtn.addEventListener("click", function () {
     }
   }
 });
+
+//reset functionality
 resethbtn.addEventListener("click", function () {
   table.innerHTML = `<tr>
          <th></th>
