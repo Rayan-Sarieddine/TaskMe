@@ -274,6 +274,13 @@ main {
 .inputs {
   display: flex;
 }
+.inputs-extra {
+  display: block;
+  margin-bottom: 2rem;
+  background: linear-gradient(#5e17eb, #7c58c2);
+  padding: 2rem;
+  text-align: center;
+}
 .no {
   display: none;
 }
@@ -300,11 +307,19 @@ main {
 .green {
   background-color: rgba(47, 147, 100, 0.84);
 }
-.dropdown-text {
+.input-text {
   font-size: 2rem;
   margin-top: 1.5rem;
   margin-left: 1rem;
   margin-right: 1rem;
   text-transform: uppercase;
   font-weight: 600;
+}
+.message {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+.note {
+  text-align: center;
+  font-size: 2rem;
 }

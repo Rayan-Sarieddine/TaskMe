@@ -96,6 +96,7 @@ const table = document.querySelector(".display-table");
 const dueDate = document.querySelector(".due");
 submitBtn.addEventListener("click", function () {
   add(1, false);
+  input.value = "";
   id++;
   deleteBtns = document.querySelectorAll(".display-btn_delete");
   editbtns = document.querySelectorAll(".display-btn_edit");
@@ -105,7 +106,7 @@ submitBtn.addEventListener("click", function () {
       deleteBtns[i].parentElement.parentElement.remove();
     });
   }
-  const rowsclclick = document.querySelectorAll(".data-row");
+  let rowsclclick = document.querySelectorAll(".data-row");
   for (let i = 0; i < rowsclclick.length; i++) {
     rowsclclick[i].addEventListener("click", function () {
       rowsclclick[i].classList.toggle("line-through");
@@ -242,3 +243,59 @@ function priority() {
     rows[i].innerHTML = `${i + 1}`;
   }
 }
+//search
+let rowsave;
+const search = document.querySelector(".search");
+const message = document.querySelector(".message");
+const searchbtn = document.querySelector(".button-search");
+const resethbtn = document.querySelector(".button-reset");
+searchbtn.addEventListener("click", function () {
+  if (search.value.trim() === "") {
+    search.placeholder = "Please Enter search";
+    search.classList.add("t-input-red");
+  } else {
+    //reset placeholder
+    if (search.classList.contains("t-input-red")) {
+      search.classList.remove("t-input-red");
+    }
+    if (message.innerHTML != "") {
+      message.innerHTML = "";
+    }
+    const tasks = document.querySelectorAll(".display-task_name");
+    console.log(search.value);
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].innerHTML == search.value) {
+        rowsave = document.querySelectorAll(".data-row");
+        table.innerHTML = `<tr>
+         <th></th>
+         <th>Priority</th>
+         <th>Task Name</th>
+         <th>Date added</th>
+         <th>Due date</th>
+       </tr>`;
+        table.innerHTML += tasks[i].parentElement.innerHTML;
+        message.innerHTML = "found task";
+        setTimeout(function () {
+          message.innerHTML = "";
+        }, 2000);
+      } else {
+        message.innerHTML = "no results found";
+        setTimeout(function () {
+          message.innerHTML = "";
+        }, 2000);
+      }
+    }
+  }
+});
+resethbtn.addEventListener("click", function () {
+  table.innerHTML = `<tr>
+         <th></th>
+         <th>Priority</th>
+         <th>Task Name</th>
+         <th>Date added</th>
+         <th>Due date</th>
+       </tr>`;
+  for (let i = 0; i < rowsave.length; i++) {
+    table.innerHTML += rowsave[i].innerHTML;
+  }
+});
