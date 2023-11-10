@@ -282,8 +282,12 @@ main {
 .inputs-extra {
   display: block;
   margin-bottom: 2rem;
+  margin-top: 2rem;
   background: linear-gradient(#5e17eb, #7c58c2);
   padding: 2rem;
+  width: 40rem;
+  transform: translateX(140%);
+  border-radius: 50%;
   text-align: center;
 }
 .no {
@@ -329,4 +333,6 @@ main {
 .note {
   text-align: center;
   font-size: 2rem;
+  margin-bottom: 10rem;
+  margin-top: 1rem;
 }
