@@ -228,6 +228,11 @@ submitBtn.addEventListener("click", function () {
     });
   }
 });
+//close button for popup functionality
+const closebtn = document.querySelector(".button-close");
+closebtn.addEventListener("click", function () {
+  document.querySelector(".popup").classList.add("no-display");
+});
 
 //clear functionality
 const clearAll = document.querySelector(".button-clear");
