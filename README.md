@@ -5,7 +5,8 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> This is my TO_DO_LIST web application named TaskMe. It is made with pure HTML, CSS and JS and contains the following functionalities:
+# This is my TO_DO_LIST web application named TaskMe. It is made with pure HTML, CSS and JS and contains the following functionalities:
+
 > -Add tasks  
 > -Delete tasks individually  
 > -Clear all tasks at once  
@@ -22,3 +23,4 @@
 <img src="./readme/title3.svg"/>
 
 | ![Landing](./readme/demo.jpg)
+| ![Landing](./readme/demo2.jpg)
